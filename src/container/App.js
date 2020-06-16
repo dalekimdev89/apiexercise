@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Dropdown from './Dropdown';
-import Searchbox from './Searchbox';
-import Output from './Output';
+import Dropdown from '../component/Dropdown';
+import Searchbox from '../component/Searchbox';
+import Output from '../component/Output';
 // import { render } from '@testing-library/react';
 
 class App extends Component {
@@ -13,16 +13,18 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('https://swapi.dev/api/')
+    // fetch('https://swapi.dev/api/')
+
+    fetch('https://swapi.dev/api/people/')
       .then(resp => resp.json())
       .then(data => this.setState({ swData : data }));
   }
 
   render() {
     const { swData } = this.state;
-    const outputData = swData;
+    const outputData = swData.results;
           
-   //  console.log(swData);
+    console.log('outputData', outputData);
     return (
        <div className='tc'>
 

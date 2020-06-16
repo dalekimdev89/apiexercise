@@ -1,15 +1,14 @@
 import React from 'react';
 
-const Output = ({prop}) => {
+const Output = ({inp}) => {
+    console.log('inp', inp);
     return(
         <div>
             <h2>OUTPUT</h2>
-            <body>
-                My name is {prop.people}.<br></br>
+                My name is {}<br></br>
                 My height is 172.<br></br>
                 Mass is 77.<br></br>
                 I came out in these films.
-            </body>
         </div>
     );
 }
