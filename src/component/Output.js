@@ -1,15 +1,12 @@
 import React from 'react';
 
-const Output = ({inp}) => {
-    console.log('inp', inp);
-    var x = 'hi'
+const Output = ( { name, height, mass, films } ) => {
+    // console.log('inp', name, height, mass);
     return(
-        <div>
-            <h2>OUTPUT</h2>
-                My name is {x}<br></br>
-                My height is 172.<br></br>
-                Mass is 77.<br></br>
-                I came out in these films.
+        <div className='tc bg-light-green dib br3 pa3 ma2 grow bw2 shadow-5'>
+                My name is {name}.<br></br>
+                My height is {height}.<br></br>
+                Mass is {mass}.<br></br>
         </div>
     );
 }

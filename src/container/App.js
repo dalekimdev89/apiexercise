@@ -1,39 +1,41 @@
 import React, { Component } from 'react';
 import Dropdown from '../component/Dropdown';
 import Searchbox from '../component/Searchbox';
-import Output from '../component/Output';
+import OutputList from '../component/OutputList';
 // import { render } from '@testing-library/react';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      swData : []
+      swData: [],
+      dropdownValue: 'https://swapi.dev/api/people/?page=1'
     }
   }
 
   componentDidMount() {
-    // fetch('https://swapi.dev/api/')
-
-    fetch('https://swapi.dev/api/people/')
+    fetch(this.state.dropdownValue)
       .then(resp => resp.json())
-      .then(data => this.setState({ swData : data }));
+      .then(data => this.setState({ swData : data.results}));
+  }
+
+  onDropChange = (event) => {
+      this.setState({ dropdownValue: event.target.value })
   }
 
   render() {
     const { swData } = this.state;
-    const outputData = swData.results;
-          
-    console.log('outputData', outputData);
-    return (
-       <div className='tc'>
+    const finalOutput = swData;
 
-          <h1 className='f1'>Fetching SW API Exercise</h1>
-          <Dropdown />
-          <Searchbox />
-          <Output prop={outputData}/>
-
-       </div>
+    return !swData.length ? 
+      <h1>LOADING...</h1> :
+      (
+        <div className=''>
+            <h1 className='f1 tc'>Fetching SW API Exercise</h1>
+            <Dropdown dropChange={this.onDropChange}/>
+            <Searchbox />
+            <OutputList prop = { swData }/>
+        </div>
        );
   }
 
