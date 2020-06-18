@@ -9,23 +9,38 @@ class App extends Component {
     super();
     this.state = {
       swData: [],
-      dropdownValue: 'https://swapi.dev/api/people/?page=1'
+      dropdownValue: 'https://swapi.dev/api/people/?page=1',
+      message: ""
     }
+    console.log("constructor")
   }
 
   componentDidMount() {
+    console.log("componentDidMount")
     fetch(this.state.dropdownValue)
       .then(resp => resp.json())
       .then(data => this.setState({ swData : data.results}));
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    console.log("componentDidUpdate")
+      if(this.state.dropdownValue !== prevState.dropdownValue)
+      {
+         fetch(this.state.dropdownValue)
+         .then(resp => resp.json())
+         .then(data => this.setState({ swData: data.results }));
+      }
+  }
+
   onDropChange = (event) => {
-      this.setState({ dropdownValue: event.target.value })
+    this.setState({ dropdownValue: event.target.value })
   }
 
   render() {
+    console.log("render")
     const { swData } = this.state;
-    const finalOutput = swData;
+    // const finalOutput = swData;
+    console.log(this.state.dropdownValue)
 
     return !swData.length ? 
       <h1>LOADING...</h1> :
