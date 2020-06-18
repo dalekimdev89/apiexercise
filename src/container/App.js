@@ -22,7 +22,7 @@ class App extends Component {
       .then(data => this.setState({ swData : data.results}));
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(_prevProps, prevState) {
     console.log("componentDidUpdate")
       if(this.state.dropdownValue !== prevState.dropdownValue)
       {
